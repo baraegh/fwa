@@ -1,6 +1,7 @@
 package com.cinema.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,15 +20,15 @@ public class UserService implements UserServiceRepo {
     @Autowired
     BCryptPasswordEncoder   encoder;
 
-    public User getById(Long id) {
+    public Optional<User> getById(Long id) {
         return userRepository.findById(id);
     }
 
-    public List<User> getAllUsers() {
+    public Optional<List<User>> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public User updateUser(User user) {
+    public Optional<User> updateUser(User user) {
         return userRepository.update(user);
     }
 
@@ -36,14 +37,14 @@ public class UserService implements UserServiceRepo {
     }
 
     @Override
-    public User signUp(User user) {
+    public Optional<User> signUp(User user) {
         user.setPassword(encoder.encode(user.getPassword()));
 
         return userRepository.save(user);
     }
 
     @Override
-    public User signIn(String email, String password) {
+    public Optional<User> signIn(String email, String password) {
         User user =  userRepository.findUserByEmail(email)
             .orElseThrow(() -> new UserNotFoundException("User Not Found"));
 
@@ -51,6 +52,6 @@ public class UserService implements UserServiceRepo {
             throw new InvalidCredentialsException("Invalid Credentials");
         }
 
-        return user;
+        return Optional.of(user);
     }
 }

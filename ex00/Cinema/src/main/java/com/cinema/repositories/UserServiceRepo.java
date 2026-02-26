@@ -1,9 +1,11 @@
 package com.cinema.repositories;
 
 
+import java.util.Optional;
+
 import com.cinema.models.User;
 
 public interface UserServiceRepo {
-    User signUp(User user);
-    User signIn(String email, String password);
+    Optional<User> signUp(User user);
+    Optional<User> signIn(String email, String password);
 }
