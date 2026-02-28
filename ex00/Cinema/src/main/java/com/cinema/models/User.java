@@ -2,7 +2,8 @@ package com.cinema.models;
 
 public class User {
     private Long    id;
-    private String  name;
+    private String  firstName;
+    private String  lastNmae;
     private String  email;
     private String  phoneNumber;
     private String  password;
@@ -10,16 +11,18 @@ public class User {
     public User() {
     }
 
-    public User(String name, String email, String phoneNumber, String password) {
-        this.name = name;
+    public User(String firstName, String lastName, String email, String phoneNumber, String password) {
+        this.firstName = firstName;
+        this.lastNmae = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
     }
 
-    public User(Long id, String name, String email, String phoneNumber, String password) {
+    public User(Long id, String firstName, String lastName, String email, String phoneNumber, String password) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastNmae = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
@@ -33,12 +36,20 @@ public class User {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastNmae;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastNmae = lastName;
     }
 
     public String getEmail() {
