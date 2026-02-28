@@ -3,7 +3,7 @@ package com.cinema.Exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseSratus(code = HttpStatus.UNAUTHORIZED, reason = "Invalid credentials")
+@ResponseStatus(code = HttpStatus.UNAUTHORIZED, reason = "Invalid credentials")
 public class InvalidCredentialsException extends RuntimeException {
     public InvalidCredentialsException(String message) {
         super(message);

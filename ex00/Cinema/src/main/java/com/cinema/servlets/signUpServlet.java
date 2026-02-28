@@ -3,13 +3,13 @@ package com.cinema.servlets;
 import java.io.IOException;
 import java.util.Optional;
 
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletConfig;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
 
@@ -23,9 +23,20 @@ public class signUpServlet extends HttpServlet {
 
     @Override
     public void init(ServletConfig config) throws ServletException {
-        ServletContext context = config.getServletContext();
-        ApplicationContext springContext = (ApplicationContext) context.getAttribute("springContext");
-        this.userService = springContext.getBean(UserService.class);
+        try {
+            ServletContext context = config.getServletContext();
+            ApplicationContext springContext = (ApplicationContext) context.getAttribute("springContext");
+            
+            if (springContext == null) {
+                throw new ServletException("springContext is NULL - listener didn't run!");
+            }
+            
+            this.userService = springContext.getBean(UserService.class);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ServletException(e);
+        }
     }
     
     @Override
@@ -42,17 +53,16 @@ public class signUpServlet extends HttpServlet {
     {
         User user = new User();
         
-        user.setName((String) rq.getParameter("name"));
+        user.setFirstName((String) rq.getParameter("firstName"));
+        user.setLastName((String) rq.getParameter("lastName"));
         user.setEmail((String) rq.getParameter("email"));
-        user.setPhoneNumber((String) rq.getParameter("phoneNumber"));
+        user.setPhoneNumber((String) rq.getParameter("phone"));
         user.setPassword((String) rq.getParameter("password"));
 
         Optional<User> userOpt = userService.signUp(user);
         
         if (userOpt.isPresent()) {
-            // rq.getRequestDispatcher("/WEB-INF/html/signIn.html")
-            //     .forward(rq, rs);
-            rs.sendRedirect("signIn.html");
+            rs.sendRedirect("signIn");
         } else {
             rq.getRequestDispatcher("/WEB-INF/html/signUp.html")
             .forward(rq, rs);

@@ -24,7 +24,8 @@ public class UserRepoImp implements UserRepository {
     private final RowMapper<User> usersRowmapper = (rs, rowNum) -> {
             User user = new User();
             user.setId(rs.getLong("id"));
-            user.setName(rs.getString("name"));
+            user.setFirstName(rs.getString("firstName"));
+            user.setLastName(rs.getString("lastName"));
             user.setEmail(rs.getString("email"));
             user.setPhoneNumber(rs.getString("phoneNumber"));
             user.setPassword(rs.getString("password"));
@@ -34,9 +35,10 @@ public class UserRepoImp implements UserRepository {
 
     @Override
     public User save(User entity) {
-        String sql = "INSERT INTO users (name, email, phoneNumber, password) VALUES (:name, :email: , :phoneNumber, :password)";
+        String sql = "INSERT INTO users (first_name, last_name, email, phone_number, password) VALUES (:firstName, :lastName, :email , :phoneNumber, :password)";
         MapSqlParameterSource params = new MapSqlParameterSource();
-        params.addValue("name", entity.getName());
+        params.addValue("firstName", entity.getFirstName());
+        params.addValue("lastName", entity.getLastName());
         params.addValue("email", entity.getEmail());
         params.addValue("phoneNumber", entity.getPhoneNumber());
         params.addValue("password", entity.getPassword());
@@ -45,19 +47,27 @@ public class UserRepoImp implements UserRepository {
     }
 
     @Override
-    public User findById(Long id) {
+    public Optional<User> findById(Long id) {
         String sql = "SELECT * FROM users WHERE id = :id";
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", id);
-        return namedJdbcTemplate.queryForObject(sql, params, usersRowmapper);
+
+        List<User> users = namedJdbcTemplate.query(sql, params, usersRowmapper);
+
+        if (users.isEmpty()) {
+            return Optional.empty();
+        }
+
+        return Optional.of(users.get(0));
     }
 
     @Override
     public User update(User entity) {
-        String sql = "UPDATE users SET name = :name, email = :email, phoneNumber = :phoneNumber, password = :password WHERE id = :id";
+        String sql = "UPDATE users SET first_name = :firstName, last_name = :lastName, email = :email, phone_number = :phoneNumber, password = :password WHERE id = :id";
         MapSqlParameterSource params = new MapSqlParameterSource();
         params.addValue("id", entity.getId());
-        params.addValue("name", entity.getName());
+        params.addValue("firstName", entity.getFirstName());
+        params.addValue("lastName", entity.getLastName());
         params.addValue("email", entity.getEmail());
         params.addValue("phoneNumber", entity.getPhoneNumber());
         params.addValue("password", entity.getPassword());
