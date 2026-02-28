@@ -23,6 +23,10 @@ public class UserService implements UserServiceRepo {
         return userRepository.findById(id);
     }
 
+    public Optional<User> getByEmail(String email) {
+        return userRepository.findUserByEmail(email);
+    }
+
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }

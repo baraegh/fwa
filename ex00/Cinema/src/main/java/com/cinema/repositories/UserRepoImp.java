@@ -24,10 +24,10 @@ public class UserRepoImp implements UserRepository {
     private final RowMapper<User> usersRowmapper = (rs, rowNum) -> {
             User user = new User();
             user.setId(rs.getLong("id"));
-            user.setFirstName(rs.getString("firstName"));
-            user.setLastName(rs.getString("lastName"));
+            user.setFirstName(rs.getString("first_name"));
+            user.setLastName(rs.getString("last_name"));
             user.setEmail(rs.getString("email"));
-            user.setPhoneNumber(rs.getString("phoneNumber"));
+            user.setPhoneNumber(rs.getString("phone_number"));
             user.setPassword(rs.getString("password"));
             return user;
         };
