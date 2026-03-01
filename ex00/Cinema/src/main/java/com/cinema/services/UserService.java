@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-
 import com.cinema.models.User;
 import com.cinema.repositories.UserRepository;
 import com.cinema.repositories.UserServiceRepo;
@@ -15,12 +14,18 @@ import com.cinema.repositories.UserServiceRepo;
 @Component
 public class UserService implements UserServiceRepo {
     @Autowired
-    private UserRepository  userRepository;
+    private UserRepository      userRepository;
     @Autowired
-    BCryptPasswordEncoder   encoder;
+    private LoginEntryService   loginEntryService;
+    @Autowired
+    BCryptPasswordEncoder       encoder;
 
     public Optional<User> getById(Long id) {
-        return userRepository.findById(id);
+        return userRepository.findById(id)
+                .map(user -> {
+                    user.setLoginEntry(loginEntryService.getByUserId(id));
+                    return user;
+                });
     }
 
     public Optional<User> getByEmail(String email) {

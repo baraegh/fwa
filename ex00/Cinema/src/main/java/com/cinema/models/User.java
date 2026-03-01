@@ -1,19 +1,22 @@
 package com.cinema.models;
 
+import java.util.List;
+
 public class User {
-    private Long    id;
-    private String  firstName;
-    private String  lastNmae;
-    private String  email;
-    private String  phoneNumber;
-    private String  password;
+    private Long                id;
+    private String              firstName;
+    private String              lastName;
+    private String              email;
+    private String              phoneNumber;
+    private String              password;
+    private List<LoginEntry>    loginEntry;
 
     public User() {
     }
 
     public User(String firstName, String lastName, String email, String phoneNumber, String password) {
         this.firstName = firstName;
-        this.lastNmae = lastName;
+        this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
@@ -22,7 +25,7 @@ public class User {
     public User(Long id, String firstName, String lastName, String email, String phoneNumber, String password) {
         this.id = id;
         this.firstName = firstName;
-        this.lastNmae = lastName;
+        this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
@@ -45,11 +48,11 @@ public class User {
     }
 
     public String getLastName() {
-        return lastNmae;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
-        this.lastNmae = lastName;
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -74,5 +77,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<LoginEntry> getLoginEntry() {
+        return loginEntry;
+    }
+
+    public void setLoginEntry(List<LoginEntry> loginEntry) {
+        this.loginEntry = loginEntry;
     }
 }
