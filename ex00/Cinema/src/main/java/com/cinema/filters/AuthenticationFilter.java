@@ -17,7 +17,11 @@ import jakarta.servlet.http.HttpSession;
 @WebFilter("/*")
 public class AuthenticationFilter implements Filter {
 
-    public static final List<String> PUBLIC_URLS = List.of("/signIn", "/signUp");
+    public static final List<String> PUBLIC_URLS = List.of(
+        "/signIn",
+        "/signUp",
+        "/css/*"
+    );
 
     public void init(ServletConfig config) {
 

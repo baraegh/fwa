@@ -10,6 +10,9 @@ public class LoginEntry {
     private LocalDate   date;
     private LocalTime   time;
 
+    private String      dateFormatted;
+    private String      timeFormatted;
+
     public LoginEntry() {
     }
 
@@ -67,5 +70,21 @@ public class LoginEntry {
 
     public void setTime(LocalTime time) {
         this.time = time;
+    }
+
+    public String getDateFormatted() {
+        return dateFormatted;
+    }
+
+    public void setDateFormatted(String dateFormatted) {
+        this.dateFormatted = dateFormatted;
+    }
+
+    public String getTimeFormatted() {
+        return timeFormatted;
+    }
+
+    public void setTimeFormatted(String timeFormatted) {
+        this.timeFormatted = timeFormatted;
     }
 }

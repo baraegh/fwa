@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign In</title>
-    <link rel="stylesheet" href="/Cinema/css/signIn.css">
+    <%-- <link rel="stylesheet" href="/Cinema/css/signIn.css">/ --%>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/signIn.css">
 </head>
 <body>
 

@@ -9,6 +9,11 @@ public class User {
     private String              email;
     private String              phoneNumber;
     private String              password;
+    //TODO: to be removed
+    /*  for perfermance issue, 
+        remove this list and get it in profile sevlet,
+        pass the list to jsp
+    */
     private List<LoginEntry>    loginEntry;
 
     public User() {

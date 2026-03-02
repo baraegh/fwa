@@ -16,16 +16,10 @@ public class UserService implements UserServiceRepo {
     @Autowired
     private UserRepository      userRepository;
     @Autowired
-    private LoginEntryService   loginEntryService;
-    @Autowired
     BCryptPasswordEncoder       encoder;
 
     public Optional<User> getById(Long id) {
-        return userRepository.findById(id)
-                .map(user -> {
-                    user.setLoginEntry(loginEntryService.getByUserId(id));
-                    return user;
-                });
+        return userRepository.findById(id);
     }
 
     public Optional<User> getByEmail(String email) {
