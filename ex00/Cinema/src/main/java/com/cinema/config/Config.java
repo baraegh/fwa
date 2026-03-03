@@ -41,5 +41,4 @@ public class Config {
     public BCryptPasswordEncoder encoder() {
         return new BCryptPasswordEncoder();
     }
-
 }

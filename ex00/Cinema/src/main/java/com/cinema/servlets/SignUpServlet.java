@@ -17,7 +17,7 @@ import com.cinema.models.User;
 import com.cinema.services.UserService;
 
 @WebServlet("/signUp")
-public class signUpServlet extends HttpServlet {
+public class SignUpServlet extends HttpServlet {
 
     private UserService userService;
 

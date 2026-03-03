@@ -19,8 +19,7 @@ public class AuthenticationFilter implements Filter {
 
     public static final List<String> PUBLIC_URLS = List.of(
         "/signIn",
-        "/signUp",
-        "/css/*"
+        "/signUp"
     );
 
     public void init(ServletConfig config) {
@@ -37,6 +36,11 @@ public class AuthenticationFilter implements Filter {
         String      path = httpReq.getServletPath();
         HttpSession session = httpReq.getSession(false);
         Boolean     isLoggedIn = (session != null && session.getAttribute("user") != null);
+
+        if (path.startsWith("/css/") || path.startsWith("/images/")) {
+            chain.doFilter(httpReq, httpRes);
+            return;
+        }
 
         if (PUBLIC_URLS.contains(path)) {
             if (isLoggedIn) {

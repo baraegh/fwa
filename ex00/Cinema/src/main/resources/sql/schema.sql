@@ -15,3 +15,12 @@ Create table login_history (
     date        DATE NOT NULL,
     time        TIME NOT NULL
 );
+
+Create table images (
+    id          SERIAL PRIMARY KEY,
+    user_id     BIGINT,
+    file_name   VARCHAR(255),
+    mime_type   VARCHAR(100),
+    size        BIGINT,
+    file_path   VARCHAR(255)
+);

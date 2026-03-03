@@ -27,7 +27,20 @@
                 </svg>
             </div>
         </div>
-        <button class="btn-upload">Upload</button>
+        
+        <form action="${pageContext.request.contextPath}/images"
+          method="POST"
+          enctype="multipart/form-data">
+            <input type="file" name="file" id="fileInput" style="display:none;">
+            <button type="button" class="btn-upload" onclick="document.getElementById('fileInput').click()">
+                Upload
+            </button>
+            <script>
+                document.getElementById('fileInput').addEventListener('change', function() {
+                    this.closest('form').submit();
+                });
+            </script>
+        </form>
     </div>
 
     <div class="profile-info">
@@ -66,15 +79,14 @@
             </tr>
         </thead>
         <tbody>
-            <%-- populate with your files list e.g:
-            <c:forEach var="file" items="${sessionScope.user.files}">
+            <c:forEach var="img" items="${sessionScope.images}">
                 <tr>
-                    <td><a href="${file.url}">${file.name}</a></td>
-                    <td>${file.size}</td>
-                    <td>${file.mime}</td>
+                    <td><a href="${pageContext.request.contextPath}/images/${img.fileName}"
+                        target="_blank">${img.fileName}</a></td>
+                    <td>${img.formattedSize}</td>
+                    <td>${img.mimeType}</td>
                 </tr>
             </c:forEach>
-            --%>
         </tbody>
     </table>
 </div>

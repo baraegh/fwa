@@ -3,31 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
+    <link rel="stylesheet" href="/Cinema/css/signUp.css">
 </head>
 <body>
 
-<h2>Register</h2>
+<div class="signup-card">
 
-<form action="/Cinema/signUp" method="POST">
+    <h2>Create account</h2>
+    <p class="subtitle">Fill in your details to get started</p>
 
-    <label>First Name:</label><br>
-    <input type="text" name="firstName" required><br><br>
+    <form action="/Cinema/signUp" method="POST">
 
-    <label>Last Name:</label><br>
-    <input type="text" name="lastName" required><br><br>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="John" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+            </div>
+        </div>
 
-    <label>Phone Number:</label><br>
-    <input type="text" name="phone" required><br><br>
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 234 567 890" required>
+        </div>
 
-    <label>Email:</label><br> 
-    <input type="email" name="email" required><br><br>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
 
-    <label>Password:</label><br>
-    <input type="password" name="password" required><br><br>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="••••••••" required>
+        </div>
 
-    <button type="submit">Sign Up</button>
+        <button type="submit" class="btn-submit">Create Account</button>
 
-</form>
+    </form>
+
+    <p class="signin-link">Already have an account? <a href="/Cinema/signIn">Sign in</a></p>
+
+</div>
 
 </body>
 </html>

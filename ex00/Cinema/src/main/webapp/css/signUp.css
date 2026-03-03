@@ -24,14 +24,14 @@ body {
     padding: 24px;
 }
 
-.signin-card {
+.signup-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     padding: 48px 44px;
     width: 100%;
-    max-width: 420px;
+    max-width: 460px;
 }
 
 h2 {
@@ -45,14 +45,20 @@ h2 {
 .subtitle {
     font-size: 0.875rem;
     color: var(--text-secondary);
-    margin-bottom: 36px;
+    margin-bottom: 32px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 label {
@@ -63,9 +69,13 @@ label {
     color: var(--text-secondary);
 }
 
-input[type="email"], input[type="password"] {
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
     font-family: 'DM Sans', sans-serif;
     font-size: 0.95rem;
+    color: var(--text-primary);
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: 6px;
@@ -80,7 +90,7 @@ input:focus {
     box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
 }
 
-.btn-signIn {
+.btn-submit {
     font-family: 'DM Sans', sans-serif;
     font-size: 0.95rem;
     font-weight: 600;
@@ -95,28 +105,20 @@ input:focus {
     transition: background 0.15s, transform 0.1s;
 }
 
-.btn-signIn:hover { background: #444; }
-.btn-signIn:active { transform: scale(0.99); }
+.btn-submit:hover { background: #444; }
+.btn-submit:active { transform: scale(0.99); }
 
-.error-msg {
-    background: #fdecea;
-    border: 1px solid #f5c6c2;
-    border-radius: 6px;
-    color: #c0392b;
-    font-size: 0.85rem;
-    padding: 10px 14px;
-    margin-bottom: 20px;
-    display: none;
-}
-
-.error-msg.visible { display: block; }
-
-.signup-link {
+.signin-link {
     text-align: center;
     margin-top: 24px;
     font-size: 0.875rem;
     color: var(--text-secondary);
 }
 
-.signup-link a { color: var(--link); text-decoration: none; font-weight: 500; }
-.signup-link a:hover { text-decoration: underline; }
+.signin-link a {
+    color: var(--link);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.signin-link a:hover { text-decoration: underline; }

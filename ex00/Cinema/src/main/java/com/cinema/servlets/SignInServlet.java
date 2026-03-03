@@ -25,7 +25,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/signIn")
-public class signInServlet extends HttpServlet {
+public class SignInServlet extends HttpServlet {
     
     private UserService             userService;
     private LoginEntryService       loginEntryService;
@@ -52,7 +52,7 @@ public class signInServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest rq, HttpServletResponse rs) throws IOException, ServletException {
-        rq.getRequestDispatcher("/WEB-INF/jsp/signIn.jsp")
+        rq.getRequestDispatcher("/WEB-INF/html/signIn.html")
             .forward(rq, rs);
     }
 
@@ -74,7 +74,7 @@ public class signInServlet extends HttpServlet {
             rq.getSession().setAttribute("user", user);
             rs.sendRedirect("profile");
         } else {
-            rq.getRequestDispatcher("/WEB-INF/jsp/signIn.jsp").forward(rq, rs);
+            rq.getRequestDispatcher("/WEB-INF/html/signIn.html").forward(rq, rs);
         }
     }
 
