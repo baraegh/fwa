@@ -195,9 +195,6 @@ This project covers the core building blocks of Java web development:
 # Build the WAR
 mvn clean package
 
-# Run unit tests
-mvn test
-
 # Clean compiled output
 mvn clean
 ```
@@ -214,3 +211,4 @@ mvn clean
 <div align="center">
 <sub>Built without Spring. Without Hibernate. Just Java.</sub>
 </div>
+
